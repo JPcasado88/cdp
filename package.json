@@ -1,0 +1,13 @@
+{
+  "name": "cdp-project",
+  "version": "1.0.0",
+  "description": "Customer Data Platform",
+  "scripts": {
+    "install": "cd cdp-lite && npm install",
+    "build": "cd cdp-lite && npm run build",
+    "start": "cd cdp-lite && npm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
