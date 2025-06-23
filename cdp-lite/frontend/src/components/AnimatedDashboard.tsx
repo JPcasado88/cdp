@@ -374,7 +374,7 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
         <div className="card">
           <h2>Top Opportunities</h2>
           <div className="opportunities">
-            {metrics.opportunities.map((opp: any, index: number) => (
+            {metrics.opportunities && metrics.opportunities.map((opp: any, index: number) => (
               <div key={index} className={`opportunity-item slide-in delay-${index}`}>
                 <div className="opportunity-header">
                   <h3>{opp.type}</h3>

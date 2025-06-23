@@ -63,6 +63,29 @@ const getMockMetrics = () => ({
     { name: 'Frequent Buyers', customerCount: 893, avgLifetimeValue: 1234, growthRate: 8.3 },
     { name: 'New Customers', customerCount: 1442, avgLifetimeValue: 156, growthRate: 23.7 }
   ],
+  opportunities: [
+    { 
+      type: 'subscription', 
+      title: 'Subscription Opportunities',
+      count: 234,
+      value: 11700,
+      description: '234 frequent buyers could be converted to subscribers'
+    },
+    { 
+      type: 'winback', 
+      title: 'Win-back Opportunities',
+      count: 89,
+      value: 44500,
+      description: '89 high-value cancelled customers to re-engage'
+    },
+    { 
+      type: 'retention', 
+      title: 'Retention Opportunities',
+      count: 45,
+      value: 22500,
+      description: '45 at-risk subscribers need immediate attention'
+    }
+  ],
   recentEvents: [
     { type: 'order', customer: 'Sarah Johnson', value: 285.50, time: '2 min ago' },
     { type: 'signup', customer: 'Mike Chen', value: null, time: '5 min ago' },
