@@ -35,11 +35,6 @@ const CustomerList: React.FC<CustomerListProps> = ({ onCustomerSelect }) => {
   
   const limit = 50;
 
-  useEffect(() => {
-    fetchCustomers();
-    fetchSegments();
-  }, [searchTerm, selectedSegment, currentPage, fetchCustomers]);
-
   const fetchCustomers = useCallback(async () => {
     try {
       setLoading(true);
@@ -69,6 +64,11 @@ const CustomerList: React.FC<CustomerListProps> = ({ onCustomerSelect }) => {
       console.error('Error fetching segments:', error);
     }
   };
+
+  useEffect(() => {
+    fetchCustomers();
+    fetchSegments();
+  }, [searchTerm, selectedSegment, currentPage, fetchCustomers]);
 
   const getHealthStatus = (churnRisk: number) => {
     if (churnRisk < 30) return { label: 'Healthy', class: 'tag-green' };

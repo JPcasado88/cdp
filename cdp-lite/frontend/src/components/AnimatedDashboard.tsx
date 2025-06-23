@@ -68,39 +68,6 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
   });
   const [hourlyData, setHourlyData] = useState<any[]>([]);
 
-  useEffect(() => {
-    fetchMetrics();
-    
-    // Simulate real-time data updates
-    const interval = setInterval(() => {
-      simulateLiveUpdate();
-    }, 3000 + Math.random() * 2000); // Random interval between 3-5 seconds
-
-    // Generate hourly data for line chart
-    generateHourlyData();
-
-    return () => clearInterval(interval);
-  }, [simulateLiveUpdate]);
-
-  const fetchMetrics = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/metrics/overview`);
-      setMetrics(response.data);
-      
-      // Initialize realtime metrics
-      setRealtimeMetrics({
-        totalCustomers: response.data.totalCustomers,
-        totalRevenue: response.data.revenue.totalRevenue,
-        activeUsers: Math.floor(response.data.totalCustomers * 0.15), // 15% active
-        conversionRate: 2.8
-      });
-    } catch (error) {
-      console.error('Error fetching metrics:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const simulateLiveUpdate = useCallback(() => {
     // Simulate different types of events
     const eventTypes = [
@@ -154,6 +121,39 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
       setMetrics(updatedMetrics);
     }
   }, [metrics]);
+
+  const fetchMetrics = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/metrics/overview`);
+      setMetrics(response.data);
+      
+      // Initialize realtime metrics
+      setRealtimeMetrics({
+        totalCustomers: response.data.totalCustomers,
+        totalRevenue: response.data.revenue.totalRevenue,
+        activeUsers: Math.floor(response.data.totalCustomers * 0.15), // 15% active
+        conversionRate: 2.8
+      });
+    } catch (error) {
+      console.error('Error fetching metrics:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMetrics();
+    
+    // Simulate real-time data updates
+    const interval = setInterval(() => {
+      simulateLiveUpdate();
+    }, 3000 + Math.random() * 2000); // Random interval between 3-5 seconds
+
+    // Generate hourly data for line chart
+    generateHourlyData();
+
+    return () => clearInterval(interval);
+  }, [simulateLiveUpdate]);
 
   const generateHourlyData = () => {
     const data = [];

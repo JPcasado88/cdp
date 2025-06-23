@@ -56,10 +56,6 @@ const CustomerProfile: React.FC<CustomerProfileProps> = ({ customerId, onBack })
   const [customer, setCustomer] = useState<CustomerData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchCustomer();
-  }, [customerId, fetchCustomer]);
-
   const fetchCustomer = useCallback(async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/customers/${customerId}`);
@@ -70,6 +66,10 @@ const CustomerProfile: React.FC<CustomerProfileProps> = ({ customerId, onBack })
       setLoading(false);
     }
   }, [customerId]);
+
+  useEffect(() => {
+    fetchCustomer();
+  }, [customerId, fetchCustomer]);
 
   if (loading) {
     return <div className="loading">Loading customer profile...</div>;
