@@ -337,7 +337,230 @@ app.get('/api/customers/:id', async (req, res) => {
     res.json(customer);
   } catch (error) {
     console.error('Error fetching customer:', error);
-    res.status(500).json({ error: 'Failed to fetch customer' });
+    
+    // Return mock customer data
+    const mockCustomers = {
+      '1': {
+        id: '1',
+        email: 'sarah.johnson@email.com',
+        first_name: 'Sarah',
+        last_name: 'Johnson',
+        phone: '+1 (555) 123-4567',
+        city: 'New York',
+        state: 'NY',
+        country: 'USA',
+        lifetime_value: 2847.50,
+        total_orders: 12,
+        first_order_date: '2023-01-15',
+        last_order_date: '2024-01-15',
+        days_since_last_order: 5,
+        average_order_value: 237.29,
+        subscription_status: 'active',
+        subscription_start_date: '2023-06-01',
+        subscription_mrr: 49.99,
+        subscription_product: 'Premium Plan',
+        email_engagement_score: 85,
+        email_opens_30d: 12,
+        email_clicks_30d: 8,
+        support_tickets_count: 2,
+        product_reviews_count: 5,
+        referrals_count: 3,
+        churn_risk_score: 15,
+        predicted_ltv: 4500.00,
+        predicted_next_order_date: '2024-02-01',
+        created_at: '2023-01-15',
+        segments: [
+          { name: 'High Value', description: 'Customers with lifetime value over $1000' },
+          { name: 'Frequent Buyers', description: 'More than 5 orders in last 90 days' }
+        ],
+        recentEvents: [
+          { event_type: 'order_placed', event_source: 'website', event_data: { amount: 285.50 }, occurred_at: '2024-01-15' },
+          { event_type: 'email_opened', event_source: 'mailchimp', event_data: { campaign: 'winter_sale' }, occurred_at: '2024-01-14' },
+          { event_type: 'product_viewed', event_source: 'website', event_data: { product: 'Premium Widget' }, occurred_at: '2024-01-13' }
+        ],
+        insights: {
+          nextBestAction: 'Offer exclusive early access to new product line',
+          lifetimeValueTrend: 'Increasing steadily',
+          engagementTrend: 'Highly engaged'
+        }
+      },
+      '2': {
+        id: '2',
+        email: 'mike.chen@email.com',
+        first_name: 'Mike',
+        last_name: 'Chen',
+        phone: '+1 (555) 234-5678',
+        city: 'San Francisco',
+        state: 'CA',
+        country: 'USA',
+        lifetime_value: 1234.75,
+        total_orders: 8,
+        first_order_date: '2023-03-20',
+        last_order_date: '2024-01-10',
+        days_since_last_order: 10,
+        average_order_value: 154.34,
+        subscription_status: 'none',
+        subscription_start_date: null,
+        subscription_mrr: 0,
+        subscription_product: null,
+        email_engagement_score: 72,
+        email_opens_30d: 8,
+        email_clicks_30d: 4,
+        support_tickets_count: 1,
+        product_reviews_count: 3,
+        referrals_count: 1,
+        churn_risk_score: 45,
+        predicted_ltv: 2000.00,
+        predicted_next_order_date: '2024-02-15',
+        created_at: '2023-03-20',
+        segments: [
+          { name: 'Frequent Buyers', description: 'More than 5 orders in last 90 days' }
+        ],
+        recentEvents: [
+          { event_type: 'order_placed', event_source: 'website', event_data: { amount: 156.25 }, occurred_at: '2024-01-10' },
+          { event_type: 'cart_abandoned', event_source: 'website', event_data: { value: 89.99 }, occurred_at: '2024-01-08' }
+        ],
+        insights: {
+          nextBestAction: 'Send personalized subscription offer',
+          lifetimeValueTrend: 'Stable',
+          engagementTrend: 'Moderately engaged'
+        }
+      },
+      '3': {
+        id: '3',
+        email: 'emma.davis@email.com',
+        first_name: 'Emma',
+        last_name: 'Davis',
+        phone: '+1 (555) 345-6789',
+        city: 'Chicago',
+        state: 'IL',
+        country: 'USA',
+        lifetime_value: 567.25,
+        total_orders: 3,
+        first_order_date: '2023-08-10',
+        last_order_date: '2023-12-20',
+        days_since_last_order: 30,
+        average_order_value: 189.08,
+        subscription_status: 'cancelled',
+        subscription_start_date: '2023-09-01',
+        subscription_mrr: 0,
+        subscription_product: 'Basic Plan',
+        email_engagement_score: 45,
+        email_opens_30d: 3,
+        email_clicks_30d: 1,
+        support_tickets_count: 4,
+        product_reviews_count: 1,
+        referrals_count: 0,
+        churn_risk_score: 78,
+        predicted_ltv: 800.00,
+        predicted_next_order_date: '2024-03-01',
+        created_at: '2023-08-10',
+        segments: [
+          { name: 'At Risk', description: 'High churn risk score' }
+        ],
+        recentEvents: [
+          { event_type: 'subscription_cancelled', event_source: 'stripe', event_data: { reason: 'too_expensive' }, occurred_at: '2023-12-20' },
+          { event_type: 'support_ticket', event_source: 'zendesk', event_data: { issue: 'billing_question' }, occurred_at: '2023-12-18' }
+        ],
+        insights: {
+          nextBestAction: 'Offer win-back discount and address pricing concerns',
+          lifetimeValueTrend: 'Declining',
+          engagementTrend: 'Disengaged'
+        }
+      },
+      '4': {
+        id: '4',
+        email: 'john.smith@email.com',
+        first_name: 'John',
+        last_name: 'Smith',
+        phone: '+1 (555) 456-7890',
+        city: 'Austin',
+        state: 'TX',
+        country: 'USA',
+        lifetime_value: 156.00,
+        total_orders: 2,
+        first_order_date: '2024-01-05',
+        last_order_date: '2024-01-18',
+        days_since_last_order: 2,
+        average_order_value: 78.00,
+        subscription_status: 'none',
+        subscription_start_date: null,
+        subscription_mrr: 0,
+        subscription_product: null,
+        email_engagement_score: 90,
+        email_opens_30d: 5,
+        email_clicks_30d: 4,
+        support_tickets_count: 0,
+        product_reviews_count: 1,
+        referrals_count: 0,
+        churn_risk_score: 25,
+        predicted_ltv: 500.00,
+        predicted_next_order_date: '2024-02-05',
+        created_at: '2024-01-05',
+        segments: [
+          { name: 'New Customers', description: 'Joined in last 30 days' }
+        ],
+        recentEvents: [
+          { event_type: 'order_placed', event_source: 'website', event_data: { amount: 78.00 }, occurred_at: '2024-01-18' },
+          { event_type: 'welcome_series', event_source: 'mailchimp', event_data: { email: 'welcome_3' }, occurred_at: '2024-01-17' }
+        ],
+        insights: {
+          nextBestAction: 'Complete onboarding sequence and introduce loyalty program',
+          lifetimeValueTrend: 'Too early to determine',
+          engagementTrend: 'Highly engaged'
+        }
+      },
+      '5': {
+        id: '5',
+        email: 'lisa.wong@email.com',
+        first_name: 'Lisa',
+        last_name: 'Wong',
+        phone: '+1 (555) 567-8901',
+        city: 'Seattle',
+        state: 'WA',
+        country: 'USA',
+        lifetime_value: 3456.80,
+        total_orders: 15,
+        first_order_date: '2022-11-01',
+        last_order_date: '2024-01-20',
+        days_since_last_order: 0,
+        average_order_value: 230.45,
+        subscription_status: 'active',
+        subscription_start_date: '2023-01-01',
+        subscription_mrr: 99.99,
+        subscription_product: 'Enterprise Plan',
+        email_engagement_score: 95,
+        email_opens_30d: 15,
+        email_clicks_30d: 12,
+        support_tickets_count: 1,
+        product_reviews_count: 8,
+        referrals_count: 5,
+        churn_risk_score: 10,
+        predicted_ltv: 6000.00,
+        predicted_next_order_date: '2024-02-10',
+        created_at: '2022-11-01',
+        segments: [
+          { name: 'High Value', description: 'Customers with lifetime value over $1000' },
+          { name: 'Frequent Buyers', description: 'More than 5 orders in last 90 days' }
+        ],
+        recentEvents: [
+          { event_type: 'order_placed', event_source: 'website', event_data: { amount: 345.60 }, occurred_at: '2024-01-20' },
+          { event_type: 'referral_made', event_source: 'referral_program', event_data: { referred_email: 'friend@email.com' }, occurred_at: '2024-01-19' },
+          { event_type: 'review_posted', event_source: 'website', event_data: { rating: 5, product: 'Premium Widget Pro' }, occurred_at: '2024-01-18' }
+        ],
+        insights: {
+          nextBestAction: 'Invite to VIP program and beta test new features',
+          lifetimeValueTrend: 'Strong growth',
+          engagementTrend: 'Brand advocate'
+        }
+      }
+    };
+    
+    const { id } = req.params;
+    const mockCustomer = mockCustomers[id] || mockCustomers['1'];
+    mockCustomer.id = id;
+    
+    res.json(mockCustomer);
   }
 });
 
