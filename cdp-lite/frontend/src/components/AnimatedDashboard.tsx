@@ -155,6 +155,7 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
     }, 5000); // Update every 5 seconds
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array - only run once on mount
 
   const generateHourlyData = () => {
