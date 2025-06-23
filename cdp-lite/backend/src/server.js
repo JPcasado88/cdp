@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const { Pool } = require('pg');
 require('dotenv').config();
+const setupDatabase = require('./setup');
 
 const app = express();
 
@@ -43,6 +44,25 @@ app.get('/api/health', async (req, res) => {
     timestamp: new Date().toISOString(),
     database: dbStatus
   });
+});
+
+// Database setup endpoint (only in development/staging)
+app.post('/api/setup', async (req, res) => {
+  try {
+    // Check if database is connected
+    await pool.query('SELECT 1');
+    
+    // Run setup
+    const result = await setupDatabase(pool);
+    res.json(result);
+  } catch (error) {
+    console.error('Setup failed:', error);
+    res.status(500).json({ 
+      error: 'Setup failed', 
+      message: error.message,
+      hint: 'Make sure DATABASE_URL is set correctly' 
+    });
+  }
 });
 
 // Mock data for when database is not available
