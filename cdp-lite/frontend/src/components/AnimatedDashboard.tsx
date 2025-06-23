@@ -100,7 +100,7 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
     }));
 
     // Update metrics for animated changes
-    setMetrics(prevMetrics => {
+    setMetrics((prevMetrics: any) => {
       if (!prevMetrics) return prevMetrics;
       
       const updatedMetrics = { ...prevMetrics };
