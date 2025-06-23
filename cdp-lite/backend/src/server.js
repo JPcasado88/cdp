@@ -48,6 +48,11 @@ app.get('/api/health', async (req, res) => {
 
 // Database setup endpoint (only in development/staging)
 app.post('/api/setup', async (req, res) => {
+  // Allow CORS for setup endpoint
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  
   try {
     // Check if database is connected
     await pool.query('SELECT 1');
@@ -63,6 +68,14 @@ app.post('/api/setup', async (req, res) => {
       hint: 'Make sure DATABASE_URL is set correctly' 
     });
   }
+});
+
+// Handle OPTIONS request for CORS preflight
+app.options('/api/setup', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.sendStatus(200);
 });
 
 // Mock data for when database is not available

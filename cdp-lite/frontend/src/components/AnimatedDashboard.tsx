@@ -100,8 +100,10 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
     }));
 
     // Update metrics for animated changes
-    if (metrics) {
-      const updatedMetrics = { ...metrics };
+    setMetrics(prevMetrics => {
+      if (!prevMetrics) return prevMetrics;
+      
+      const updatedMetrics = { ...prevMetrics };
       
       if (randomEvent.type === 'signup') {
         updatedMetrics.totalCustomers += 1;
@@ -113,14 +115,16 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
       }
 
       // Randomly update segment counts
-      updatedMetrics.segments = updatedMetrics.segments.map((seg: any) => ({
-        ...seg,
-        customerCount: seg.customerCount + Math.floor(Math.random() * 3 - 1)
-      }));
+      if (updatedMetrics.segments) {
+        updatedMetrics.segments = updatedMetrics.segments.map((seg: any) => ({
+          ...seg,
+          customerCount: seg.customerCount + Math.floor(Math.random() * 3 - 1)
+        }));
+      }
 
-      setMetrics(updatedMetrics);
-    }
-  }, [metrics]);
+      return updatedMetrics;
+    });
+  }, []);
 
   const fetchMetrics = async () => {
     try {
@@ -143,17 +147,15 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
 
   useEffect(() => {
     fetchMetrics();
+    generateHourlyData();
     
     // Simulate real-time data updates
     const interval = setInterval(() => {
       simulateLiveUpdate();
-    }, 3000 + Math.random() * 2000); // Random interval between 3-5 seconds
-
-    // Generate hourly data for line chart
-    generateHourlyData();
+    }, 5000); // Update every 5 seconds
 
     return () => clearInterval(interval);
-  }, [simulateLiveUpdate]);
+  }, []); // Empty dependency array - only run once on mount
 
   const generateHourlyData = () => {
     const data = [];

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CDP Database Setup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f1f5f9;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <h1>CDP Database Setup</h1>
+    <p>Click the button below to initialize your CDP database with sample data:</p>
+    
+    <button id="setupBtn" onclick="setupDatabase()">Initialize Database</button>
+    
+    <div id="result"></div>
+
+    <script>
+        async function setupDatabase() {
+            const button = document.getElementById('setupBtn');
+            const resultDiv = document.getElementById('result');
+            
+            button.disabled = true;
+            button.textContent = 'Setting up...';
+            resultDiv.className = 'result';
+            resultDiv.textContent = 'Initializing database, please wait...';
+            
+            try {
+                const response = await fetch('https://cdp-production.up.railway.app/api/setup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = '✅ Success!\n\n' + JSON.stringify(data, null, 2);
+                    button.textContent = 'Setup Complete!';
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = '❌ Error:\n\n' + JSON.stringify(data, null, 2);
+                    button.textContent = 'Setup Failed - Try Again';
+                    button.disabled = false;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = '❌ Error:\n\n' + error.message;
+                button.textContent = 'Setup Failed - Try Again';
+                button.disabled = false;
+            }
+        }
+        
+        // Check database status on load
+        fetch('https://cdp-production.up.railway.app/api/health')
+            .then(r => r.json())
+            .then(data => {
+                const status = document.createElement('div');
+                status.style.marginBottom = '20px';
+                status.innerHTML = `<strong>Database Status:</strong> ${data.database}`;
+                document.querySelector('button').before(status);
+            });
+    </script>
+</body>
+</html>
