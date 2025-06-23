@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Users, Target, Settings } from 'lucide-react';
+import { LayoutDashboard, Users, Target } from 'lucide-react';
 import './Navigation.css';
 
 interface NavigationProps {

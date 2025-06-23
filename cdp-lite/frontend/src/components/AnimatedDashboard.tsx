@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Area, AreaChart } from 'recharts';
-import { TrendingUp, TrendingDown, Users, DollarSign, Target, AlertCircle, Bell, ShoppingCart, Mail, UserCheck } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, Target, Bell, ShoppingCart, Mail, UserCheck } from 'lucide-react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
 import './AnimatedDashboard.css';
@@ -80,7 +80,7 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
     generateHourlyData();
 
     return () => clearInterval(interval);
-  }, []);
+  }, [simulateLiveUpdate]);
 
   const fetchMetrics = async () => {
     try {
@@ -101,7 +101,7 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
     }
   };
 
-  const simulateLiveUpdate = () => {
+  const simulateLiveUpdate = useCallback(() => {
     // Simulate different types of events
     const eventTypes = [
       { type: 'order', icon: ShoppingCart, message: 'New order', value: 50 + Math.random() * 150 },
@@ -153,7 +153,7 @@ const AnimatedDashboard: React.FC<DashboardProps> = ({ onCustomerSelect, onSegme
 
       setMetrics(updatedMetrics);
     }
-  };
+  }, [metrics]);
 
   const generateHourlyData = () => {
     const data = [];

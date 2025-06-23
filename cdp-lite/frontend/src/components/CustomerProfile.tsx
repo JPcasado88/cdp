@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { ArrowLeft, Mail, Phone, MapPin, Calendar, Package, Star, Users, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
@@ -58,9 +58,9 @@ const CustomerProfile: React.FC<CustomerProfileProps> = ({ customerId, onBack })
 
   useEffect(() => {
     fetchCustomer();
-  }, [customerId]);
+  }, [customerId, fetchCustomer]);
 
-  const fetchCustomer = async () => {
+  const fetchCustomer = useCallback(async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/customers/${customerId}`);
       setCustomer(response.data);
@@ -69,7 +69,7 @@ const CustomerProfile: React.FC<CustomerProfileProps> = ({ customerId, onBack })
     } finally {
       setLoading(false);
     }
-  };
+  }, [customerId]);
 
   if (loading) {
     return <div className="loading">Loading customer profile...</div>;

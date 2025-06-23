@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { TrendingUp, TrendingDown, Users, DollarSign, Target, AlertTriangle } from 'lucide-react';
+import { TrendingUp, TrendingDown, Users, DollarSign, Target } from 'lucide-react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
 import './Dashboard.css';

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
 import './CustomerList.css';
@@ -38,9 +38,9 @@ const CustomerList: React.FC<CustomerListProps> = ({ onCustomerSelect }) => {
   useEffect(() => {
     fetchCustomers();
     fetchSegments();
-  }, [searchTerm, selectedSegment, currentPage]);
+  }, [searchTerm, selectedSegment, currentPage, fetchCustomers]);
 
-  const fetchCustomers = async () => {
+  const fetchCustomers = useCallback(async () => {
     try {
       setLoading(true);
       const params: any = {
@@ -59,7 +59,7 @@ const CustomerList: React.FC<CustomerListProps> = ({ onCustomerSelect }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm, selectedSegment, limit]);
 
   const fetchSegments = async () => {
     try {
