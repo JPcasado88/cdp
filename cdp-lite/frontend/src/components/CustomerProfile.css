@@ -1,0 +1,209 @@
+.customer-profile {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background: #f3f4f6;
+  color: #1a1a1a;
+}
+
+.profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.profile-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-item .metric-label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.metric-item .metric-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.health-meter {
+  margin-bottom: 20px;
+}
+
+.health-score {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.score-label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.score-value {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.health-bar {
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.insight-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #92400e;
+}
+
+.subscription-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.subscription-badge.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.subscription-badge.inactive {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.subscription-details p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.subscription-cta {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.engagement-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-item svg {
+  color: #3b82f6;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.segments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.segment-item {
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.segment-item h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.segment-item p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.event-source {
+  font-weight: normal;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.event-details {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #6b7280;
+}

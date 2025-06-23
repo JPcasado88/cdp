@@ -1,0 +1,133 @@
+.dashboard {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-header {
+  margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.metric-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #3b82f6;
+  opacity: 0.2;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.health-chart {
+  position: relative;
+}
+
+.health-legend {
+  margin-top: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.legend-label {
+  flex: 1;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.legend-value {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.opportunities {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.opportunity-item {
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.opportunity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.opportunity-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.opportunity-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.opportunity-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.opportunity-count {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 12px;
+}
+
+.opportunity-item .btn {
+  width: 100%;
+}

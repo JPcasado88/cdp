@@ -1,0 +1,30 @@
+{
+  "name": "cdp-lite",
+  "version": "1.0.0",
+  "description": "Customer Data Platform - Turn scattered customer data into revenue-driving segments",
+  "scripts": {
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "init:db": "cd backend && npm run init-db",
+    "generate:data": "cd backend && npm run generate-data",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm start",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "keywords": [
+    "cdp",
+    "customer-data-platform",
+    "marketing",
+    "segmentation",
+    "analytics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

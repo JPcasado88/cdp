@@ -1,0 +1,116 @@
+.customer-list {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.customer-list-header {
+  margin-bottom: 24px;
+}
+
+.customer-list-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.customer-count {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+
+.search-input {
+  padding-left: 44px;
+}
+
+.segment-filter {
+  padding: 10px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.segment-filter:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background: #f3f4f6;
+}
+
+.customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customer-name {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.customer-email {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.customer-location {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.ltv-value {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.segment-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pagination .btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pagination .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #6b7280;
+}

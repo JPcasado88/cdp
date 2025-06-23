@@ -1,0 +1,27 @@
+{
+  "name": "cdp-lite-backend",
+  "version": "1.0.0",
+  "description": "Customer Data Platform Backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "generate-data": "node src/scripts/generateData.js",
+    "init-db": "node src/scripts/initDb.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "pg": "^8.11.3",
+    "dotenv": "^16.3.1",
+    "bull": "^4.11.5",
+    "redis": "^4.6.11",
+    "date-fns": "^2.30.0",
+    "faker": "^5.5.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
