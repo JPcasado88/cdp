@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { Pool } = require('pg');
 require('dotenv').config();
 
@@ -11,6 +12,9 @@ const pool = new Pool({
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, '../../frontend/build')));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -430,6 +434,11 @@ async function calculateSegmentMembership(segmentId, rules) {
     WHERE id = $1
   `, [segmentId]);
 }
+
+// Serve React app for any non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/build', 'index.html'));
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
